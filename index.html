@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tienda de Guitarras</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <header>
+        <h1>Tienda de Guitarras</h1>
+    </header>
+
+    <main>
+        <section>
+            <h2>Productos</h2>
+            <div id="productos-container"></div>
+        </section>
+
+    <aside>
+        <h2>Carrito</h2>
+        <div id="carrito-container"></div>
+        <p>Total: $<span id="total">0</span></p>
+        <button id="vaciar-carrito">Vaciar Carrito</button>
+        <button id="confirmar-compra">Confirmar Compra</button>
+    </aside>
+
+    <!-- Modal de confirmación -->
+<div id="modal-compra" class="modal oculta">
+<div class="modal-contenido">
+    <p>¡Gracias por tu compra!</p>
+    <button id="cerrar-modal">Cerrar</button>
+</div>
+</div>
+
+</main>
+
+<footer>
+    <p>© 2025 Tienda de Guitarras</p> 
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
