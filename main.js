@@ -1,14 +1,14 @@
-// Productos disponibles
+
 const productos = [
-  { id: 1, nombre: "Gibson Les Paul", precio: 1500, imagen: "img/Gibson.jpg" },
-  { id: 2, nombre: "Fender Stratocaster", precio: 1400, imagen: "img/Stratocaster.jpg" },
-  { id: 3, nombre: "Ibanez RG", precio: 1200, imagen: "img/Ibanez.jpg" },
-  { id: 4, nombre: "PRS Custom 24", precio: 1600, imagen: "img/prscustom24.jpg" },
-  { id: 5, nombre: "Jackson Soloist", precio: 1100, imagen: "img/JacksonSoloist.jpg" },
-  { id: 6, nombre: "Yamaha Pacifica", precio: 900, imagen: "img/YahamaPacifica.jpg" }
+    { id: 1, nombre: "Gibson Les Paul", precio: 1500, imagen: "img/Gibson.jpg" },
+    { id: 2, nombre: "Fender Stratocaster", precio: 1400, imagen: "img/Stratocaster.jpg" },
+    { id: 3, nombre: "Ibanez RG", precio: 1200, imagen: "img/Ibanez.jpg" },
+    { id: 4, nombre: "PRS Custom 24", precio: 1600, imagen: "img/prscustom24.jpg" },
+    { id: 5, nombre: "Jackson Soloist", precio: 1100, imagen: "img/JacksonSoloist.jpg" },
+    { id: 6, nombre: "Yamaha Pacifica", precio: 900, imagen: "img/YahamaPacifica.jpg" }
 ];
 
-// Referencias DOM
+
 const contenedorProductos = document.getElementById("productos-container");
 const contenedorCarrito = document.getElementById("carrito-container");
 const totalHTML = document.getElementById("total");
@@ -17,10 +17,10 @@ const btnConfirmar = document.getElementById("confirmar-compra");
 const modal = document.getElementById("modal-compra");
 const btnCerrarModal = document.getElementById("cerrar-modal");
 
-// Cargar carrito del localStorage o iniciar vacío
+
 let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-// Mostrar productos (cards)
+
 function mostrarProductos() {
     contenedorProductos.innerHTML = "";
     productos.forEach(producto => {
@@ -35,7 +35,7 @@ function mostrarProductos() {
     contenedorProductos.appendChild(div);
 });
 
-  // Agregar evento a botones agregar
+
 document.querySelectorAll(".btn-agregar").forEach(boton => {
     boton.addEventListener("click", e => {
     const id = Number(e.target.getAttribute("data-id"));
@@ -44,7 +44,7 @@ document.querySelectorAll(".btn-agregar").forEach(boton => {
 });
 }
 
-// Agregar producto al carrito
+
 function agregarAlCarrito(id) {
     const producto = productos.find(p => p.id === id);
     carrito.push(producto);
@@ -52,7 +52,7 @@ function agregarAlCarrito(id) {
     mostrarCarrito();
 }
 
-// Mostrar carrito y total con botones eliminar
+
 function mostrarCarrito() {
     contenedorCarrito.innerHTML = "";
     carrito.forEach((item, index) => {
@@ -65,7 +65,7 @@ function mostrarCarrito() {
     contenedorCarrito.appendChild(div);
 });
 
-  // Eventos eliminar
+
 document.querySelectorAll(".btn-eliminar").forEach(boton => {
     boton.addEventListener("click", e => {
     const index = Number(e.target.getAttribute("data-index"));
@@ -77,43 +77,37 @@ const total = carrito.reduce((acc, item) => acc + item.precio, 0);
 totalHTML.textContent = total;
 }
 
-// Eliminar producto del carrito
+
 function eliminarDelCarrito(index) {
     carrito.splice(index, 1);
     guardarCarrito();
     mostrarCarrito();
 }
 
-// Guardar carrito en localStorage
+
 function guardarCarrito() {
     localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
-// Vaciar carrito con botón
+
 btnVaciar.addEventListener("click", () => {
     carrito = [];
     guardarCarrito();
     mostrarCarrito();
 });
 
-// Confirmar compra con ventana modal
+
 btnConfirmar.addEventListener("click", () => {
-if (carrito.length === 0) {
-    return;
-}
-
-
-
-modal.classList.remove("oculta");
+    modal.classList.remove("oculta");
     carrito = [];
     guardarCarrito();
     mostrarCarrito();
 });
 
-// Cerrar modal
+
 btnCerrarModal.addEventListener("click", () => {
 modal.classList.add("oculta");
 });
-// Inicializar
+
 mostrarProductos();
 mostrarCarrito();
